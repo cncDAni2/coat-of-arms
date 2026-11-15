@@ -111,9 +111,13 @@ export const patternData:PatternData[] = [{
   shapeColors: ['#FF0000', '#000000', '#0281c9'],
   multipleColors: [[0], [1,4], [2,3]]
 }];
-export const chargeData:ChargeData[] = [{
-  url: 'coat-of-arms/charges/double cross_IV_Bela.svg',
-  name: 'Double cross (IV Bela)',
-  preview: 'diamond_preview.png',
-  scale: 1
+export const chargeData: ChargeData[] = [{
+  url: 'coat-of-arms/charges/double-cross.svg',
+  name: 'Double cross (IV Béla)'
+}, {
+  url: 'coat-of-arms/charges/crown.svg',
+  name: 'Crown'
+}, {
+  url: 'coat-of-arms/charges/triple-mount.svg',
+  name: 'Triple mount'
 }];

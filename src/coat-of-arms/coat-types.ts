@@ -1,6 +1,3 @@
-import * as fabric from 'fabric';
-
-export type CoaLayers = Record<string, fabric.Object[]>;
 export interface BaseInfo {
   id: number | string,
   offsetX?: number,
@@ -33,12 +30,10 @@ export interface PatternData {
   i?: number
 }
 export interface ChargeData {
-  preview: string,
   url: string,
-  name: string,
-  scale: number,
-  i?: number
-}export interface SelectedPattern {
+  name: string
+}
+export interface SelectedPattern {
   url: string,
   bgColor: string,
   padding: number,
@@ -49,6 +44,23 @@ export interface ChargeData {
   multipleColors?: number[][],
   i?: number
 }
+
+/** Which field area a charge lives in (and is clipped to): an area index, or the whole shield. */
+export type ChargeArea = number | 'all';
+
+/** A charge placed on the shield. Position/size are in logical canvas units (500×500). */
+export interface ChargeLayer {
+  id: number,
+  charge: ChargeData,
+  area: ChargeArea,
+  x: number, // center
+  y: number, // center
+  width: number, // unscaled size
+  height: number,
+  scale: number,
+  rotation: number // radians
+}
+
 export interface CoaState {
   backgroundColor: string,
   selectedBase: {
@@ -62,5 +74,10 @@ export interface CoaState {
     shape: DividentImagesInfo,
     colors: string[],
     pattern: (SelectedPattern | null)[]
-  }
+  },
+  /** Bottom → top render order */
+  charges: ChargeLayer[],
+  selectedChargeId: number | null,
+  /** Area that newly added charges go into */
+  chargeTarget: ChargeArea
 }

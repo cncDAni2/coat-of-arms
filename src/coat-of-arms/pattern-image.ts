@@ -2,7 +2,7 @@ import { patternOptions } from './coat-types';
 
 /**
  * Builds a canvas tile from a pattern SVG: recolors its shapes, then applies background, padding and scale.
- * The result is used as the source of a fabric.Pattern.
+ * The result is used as the source of a CanvasPattern.
  */
 export async function createCanvasImageSourceFromSVG(options: patternOptions): Promise<CanvasImageSource> {
   try {
