@@ -1,0 +1,19 @@
+{
+    "eslint.enable": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "git.autofetch": true,
+    "eslint.rules.customizations": [
+        {
+            "rule": "*",
+            "severity": "info"
+        },
+    ],
+    "workbench.colorCustomizations": {
+        "editorInfo.foreground": "#3d91ff8c",
+    }
+}
