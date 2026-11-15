@@ -1,5 +1,7 @@
 # 11 – Validációs szabálykészlet a címerkészítőhöz
 
+> **Megvalósítás:** `src/coat-of-arms/validation.ts` (`analyze` = pixelelemzés 200×200-as rácson, `evaluate` = szabályok). Elv: amit lehet, a felület eleve tilt (mázválasztó, címerkép-választó, csúszkahatárok); a maradék hiba a szekcióban és a Letöltés gomb alatt piros dobozban jelenik meg, és **a letöltés le van tiltva**. Az alábbi kódlista a tervezési háttér; a ténylegesen megvalósított részhalmazt lásd a forrásban és a [07](07-cimerkepek.md) „Az alkalmazásban” részében.
+
 Gépi ellenőrzéshez lefordított szabályok. Súlyosság:
 
 - **HIBA** – heraldikailag szabálytalan (a címer nem „szabályos”).

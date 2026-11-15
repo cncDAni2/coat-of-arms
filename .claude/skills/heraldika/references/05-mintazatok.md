@@ -62,21 +62,21 @@ A mezőt **sok apró, azonos ábra** borítja egyenletesen, a szélen **elvágva
 - **Nem része a címernek**, a leírás nem említi (az angol heraldikában biztosan; a francia néha kiírja). A damaszkolt és a sima mező **ugyanaz a címer**.
 - Csak tónuson belül maradhat: nem lehet olyan erős, hogy új máznak vagy ábrának tűnjön.
 
-## Az alkalmazás mintázatai (`patternData`)
+## Az alkalmazásban (`field.ts`)
 
-| Név a kódban | Heraldikai értelmezés | Megjegyzés |
-|--------------|-----------------------|------------|
-| `Stripes` | pólyázott / cölöpözött (irány szerint) | a sávszám legyen **páros**; 2 máz |
-| `Squares` | **sakkozott** | 2 máz; `multipleColors` jó irány |
-| `Diamonds` | **rutázott** | jelenleg **3** színt enged (`#FF0000`, `#000000`, `#0281c9`) → heraldikailag 2 máz a szabályos; a 3 szín nem szabályos mezőváltozat |
-| `Circle` | egy **korong** (roundel) – ha ismétlődő, korongokkal hintett | |
-| `3 circles` | 3 korong / korongokkal hintett | |
-| `Ring` | **gyűrű** (annulet) hintve | |
-| `Jean de Montfort` | **hermelin** (Bretagne hermelinje) | prém; alapesetben ezüst mező + fekete farkak, ne legyen tetszőleges színű, vagy legyen ellenhermelin/aranyhermelin variáns |
+A minták procedurálisan, **a pajzs határaihoz igazítva** rajzolódnak – nincs X/Y eltolás, csak darabszám:
 
-Ajánlások:
+| Változat | Darabszám | Igazítás |
+|----------|-----------|----------|
+| pólyázott / cölöpölt / (bal)harántpólyázott | páros: 4–10 | első máz a pajzs tetején / jobb (dexter) szélén |
+| sakkozott | 4–8 oszlop | jobb felső sarokban egész kockával indul |
+| rutázott | 3–7 oszlop | középvonalra szimmetrikus, felül egész rombusz |
+| hintett (lepény / gyűrű) | sűrűség 3–8 / sor, méret 30–90% | középvonalra szimmetrikus, eltolt sorok |
 
-- A mintázat színeit is a **mázlistára** korlátozd.
-- Hintésnél ellenőrizd a színszabályt (alapmező ↔ minta ábrái).
-- Mezőváltozatnál (sávok, sakk, rutázás) a két máz **ne egyezzen**, és a szélső elemek száma legyen páros.
-- Érdemes felvenni: **mál**, **pólyázott (páros számválasztóval)**, **harántsávozott**, **falazott**.
+- A prémek **nem mázak**, hanem külön mező-opciók (a mezőváltozatok mellett), saját beállításokkal:
+  - **hermelin**: hagyományos változatok (hermelin, ellenhermelin, Erminois, Pean) egy kattintással; a farkak máza szabadon választható, de a mezővel ellentétes csoportból (fém ↔ szín); sűrűség 3–8 / sor, méret 40–90%.
+  - **evet**: hagyományos ezüst–kék; a harangok máza a mezővel ellentétes csoportból; elrendezés: evet / Counter-vair / Potent; sorok száma 3–8. A harangok egybevágóak az alap fordított harangjaival (egyenlő terület).
+- A mázválasztó csak fémeket és színeket kínál.
+- Minden darab vékony fekete kontúrt kap (rajzi elem, nem máz).
+- Nincs „rés” (gap) és nincs külön háttérszín a fedő mintáknál.
+

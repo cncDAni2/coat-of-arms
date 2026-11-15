@@ -29,13 +29,15 @@ A magyar heraldikában a fő színek: **vörös, kék, zöld, fekete**; a bíbor
 
 ### Prémek (furs)
 
+Forrás a magyar nevekhez: [Hermelin (heraldika)](https://hu.wikipedia.org/wiki/Hermelin_(heraldika)). Az egyéni színezésű hermelin általános neve: **hermelinezett**.
+
 | Magyar | Angol | Leírás |
 |--------|-------|--------|
-| **hermelin** | Ermine | ezüst (fehér) mező fekete hermelinfarkokkal |
-| **ellenhermelin** | Ermines | fekete mező ezüst farkokkal |
-| **aranyhermelin** | Erminois | arany mező fekete farkokkal |
-| **fekete-arany hermelin** | Pean | fekete mező arany farkokkal |
-| **mál** (evet) | Vair | ezüst és kék, váltakozó harang (mókusprém) alakú darabok |
+| **hermelin** | Ermine | ezüst (fehér) mező fekete **hermelinfoltokkal** (a stilizált alakzat szakszava *hermelinfolt*; részei a *farokvégek*) |
+| **ellenhermelin** (visszás hermelin) | Ermines | fekete mező ezüst foltokkal |
+| **aranyhermelin** | Erminois | arany mező fekete foltokkal |
+| **arany ellenhermelin** | Pean | fekete mező arany foltokkal |
+| **evet** | Vair | ezüst és kék, váltakozó harang (mókusprém) alakú darabok ([Címerhatározó/Mutató](https://hu.wikibooks.org/wiki/Címerhatározó/Mutató): *evet = vair*; a „mál” ott gyűjtőfogalom) |
 | **ellenmál** | Counter-vair | ugyanaz, de a darabok tükrözve, azonos máz találkozik |
 | **mál (más mázakkal)** | Vairé / vairy … | mál-minta más fém + szín párral; a leírás megnevezi a mázakat |
 | **cölöpmál / támasztékmál** | Potent | T alakú (mankós) darabok |

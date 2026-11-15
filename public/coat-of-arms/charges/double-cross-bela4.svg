@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 104 204">
+  <!-- Double cross after the later seals of Béla IV (Takács Imre: Az Árpád-házi királyok pecsétjei):
+       arms slightly widening towards their ends, a pointed spike at the foot of the stem. -->
+  <path fill="#FFF" stroke="#000" stroke-width="1.2" stroke-linejoin="miter"
+        d="M40,0 H60 L57,38 L80,35 V55 L57,52 L57,85 L94,82 V102 L57,99 L57,172 L50,198 L43,172 L43,99 L6,102 V82 L43,85 L43,52 L20,55 V35 L43,38 Z"/>
+</svg>

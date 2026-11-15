@@ -32,18 +32,20 @@ A részek mázait a leírás **jobbról balra, felülről lefelé** sorolja (her
 
 ## Osztóvonalak (lines of partition)
 
+A magyar nevek forrása: [Heraldikai lexikon / Osztóvonal](https://hu.wikibooks.org/wiki/Heraldikai_lexikon/Osztóvonal) (ott a „fűrészes” a *pily*, nem az *indented*!).
+
 Az osztóvonal (és a mesteralakok széle) alapesetben **egyenes**. Díszes vonal csak akkor, ha a leírás megnevezi; a díszítés **mindig az osztás része** (a leírás: „hullámosan vágott”).
 
-| Magyar (közelítő) | Angol | Leírás |
+| Magyar | Angol | Leírás |
 |-------------------|-------|--------|
 | **hullámos** | wavy / undy | szinuszhullám; gyakran vizet jelöl |
-| **felhős** | nebuly | erősen kanyargó, „felhő” |
-| **fűrészes** | indented | sűrű, kis háromszögfogak; a két oldal csúcsai egybeesnek |
-| **csipkézett / ékes** (nagyfogú) | dancetty | kevés (alapesetben **3**) nagy fog; párhuzamos élek |
-| **csipkés (befelé ívelt)** | engrailed | félkörívek, **csúcsaik kifelé** (az első mező felé) mutatnak |
-| **visszacsipkés** | invected | ugyanaz fordítva, csúcsok befelé |
-| **bástyás / pártázatos** | embattled | négyszöghullám (várfal-pártázat). Pólyán **csak a felső** élen, hacsak a leírás nem mondja mindkettőre |
-| **ellenbástyás** | embattled-counter-embattled | mindkét él pártázatos |
+| **golyós / felhős** | nebuly | erősen kanyargó, „felhő” |
+| **csúcsos** | indented | sűrű, kis háromszögfogak; a két oldal csúcsai egybeesnek |
+| **sarkos** | dancetty | kevés (alapesetben **3**) nagy fog; párhuzamos élek |
+| **fodros** | engrailed | félkörívek, **csúcsaik kifelé** (az első mező felé) mutatnak |
+| **pikkelyes** | invected | ugyanaz fordítva, csúcsok befelé |
+| **ormós** | embattled | négyszöghullám (várfal-pártázat). Pólyán **csak a felső** élen, hacsak a leírás nem mondja mindkettőre |
+| **kettősormós / ellenormós** | embattled-counter-embattled | mindkét él pártázatos |
 | **fecskefarkas** | dovetailed | fecskefark (ácskötés) alakú fogak |
 | **ágcsonkos** | raguly | ferde ágcsonkok (fatörzsszerű) |
 | **mankós** | potenty | T alakú fogak |
@@ -61,17 +63,24 @@ Szabályok:
 - A díszes vonal **nem keverhető** egy vonalon belül.
 - A skót heraldikában a díszes vonalú ráma a mellékágak megkülönböztetésére szolgál.
 
-## Az alkalmazás osztásai (`dividentImagesInfo`)
+## Az alkalmazás osztásai (`geometry.ts` → `DIVISIONS`)
 
-| `id` | Heraldikai név | Megjegyzés |
-|------|----------------|------------|
-| `flat` | osztatlan mező | 1 máz |
-| `perpale` | hasított | `x` eltolás: csak „magasan/mélyen” jellegű, enyhe eltolás szabályos |
-| `Perfess` | vágott | |
-| `Perbend` | harántolt | |
-| `Perbentsinister` | balharántolt | |
-| `persaltire` | harántnégyelt | 4 mező; heraldikailag a 4 mezőt 2 mázzal váltakozva szokás színezni |
-| `quaterly` | négyelt | 4 mező; 1=4, 2=3 a tipikus |
-| `Gyronny6F/T`, `Gyronny8F/T`, `Gyronny12F/T` | 6, 8, 12 részre forgósan osztott | **csak 2 máz** (`divided: 2` helyes); a középpont eltolása szabálytalan, ha jelentős |
+Minden osztás egy általános „sugaras ék” építőre (`wedges`) vezethető vissza; az areák heraldikai sorrendben jönnek (fő előbb, jobb előbb).
 
-Hiányzó, szabályos alaposztások, amelyeket érdemes felvenni: **szarufásan osztott (per chevron)**, **villásan osztott (per pall, 3 mező)**, **hármas osztások (tierced per pale / per fess)**, valamint **díszes osztóvonalak** (legalább hullámos, fűrészes, csipkés, bástyás).
+| `id` | Magyar | Mezők | Állítható |
+|------|--------|-------|-----------|
+| `plain` | osztatlan | 1 | – |
+| `perPale` / `perFess` | hasított / vágott | 2 | x / y |
+| `perBend` / `perBendSinister` | harántolt / balharántolt | 2 | y |
+| `quarterly` / `perSaltire` | négyelt / harántnégyelt | **2** (1=4, 2=3) | x, y |
+| `perChevron` / `perChevronInverted` | szarufásan / fordított szarufásan osztott | 2 | y |
+| `perPall` / `perPallReversed` | villásan / fordított villásan osztott | 3 | y |
+| `tiercedPale` / `tiercedFess` | hasítva / vágva harmadolt | 3 | – |
+| `perPile` | ék | 2 | – |
+| `chape` | süvegezett | 2 | – |
+| `gyronny6/8/12` | gyronny (magyar szakszó nincs) | 2 | x, y |
+
+- Eltolás legfeljebb `MAX_OFFSET` = a pajzs ±12%-a.
+- Osztóvonalak: egyenes, hullámos, fodros, pikkelyes, csúcsos, sarkos, ormós (`LINE_STYLES`).
+- Négy független máz sehol nincs (az a címeregyesítés, későbbi funkció).
+

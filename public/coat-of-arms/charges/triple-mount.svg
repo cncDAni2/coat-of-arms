@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="297 449.8 136 108.2">
-  <!-- Hill outline extracted from the Coat of arms of Hungary (Wikimedia Commons); the mount continues
-       straight down into a tall base, as on the Hungarian and Slovak arms -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="297 449.8 136 36.9">
+  <!-- Hill outline extracted from the Coat of arms of Hungary (Wikimedia Commons).
+       Only the three mounds: the sides run on below the viewBox, so the bottom row of the image is
+       fill + side outlines, which the program continues down to the base of the shield (base charge). -->
   <g transform="translate(-331.29893,6.7056205)">
-    <path stroke-linejoin="round" d="m629.29892,473.70211c11.82992-14.2242,26.08445-14.06082,35.57142-0.2768,2.86842-28.31512,18.51735-29.3178,32.93542-29.3178,22.15953,0,31.1572,11.23987,32.18884,29.31012,9.62769-13.87584,23.48594-13.03229,32.5676-3.65378V550.3H629.29892Z" stroke="#000" stroke-width="0.85030907" fill="#436f4d"/>
+    <path d="m629.29892,473.70211c11.82992-14.2242,26.08445-14.06082,35.57142-0.2768,2.86842-28.31512,18.51735-29.3178,32.93542-29.3178,22.15953,0,31.1572,11.23987,32.18884,29.31012,9.62769-13.87584,23.48594-13.03229,32.5676-3.65378V550.3H629.29892Z" fill="#078930"/>
+    <path d="M629.29892,550.3V473.70211c11.82992-14.2242,26.08445-14.06082,35.57142-0.2768,2.86842-28.31512,18.51735-29.3178,32.93542-29.3178,22.15953,0,31.1572,11.23987,32.18884,29.31012,9.62769-13.87584,23.48594-13.03229,32.5676-3.65378V550.3" fill="none" stroke="#000" stroke-width="0.85030907" stroke-linejoin="round"/>
   </g>
 </svg>

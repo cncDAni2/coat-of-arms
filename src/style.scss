@@ -18,7 +18,9 @@
 
   --font-display: 'Cinzel Decorative', 'Cinzel', serif;
   --font-heading: 'Cinzel', 'Times New Roman', serif;
-  --font-body: 'EB Garamond', Garamond, Georgia, serif;
+  --font-body: 'Spectral', Georgia, serif;
+  /** Small caps for labels: crisp at small sizes, unlike all-caps display fonts */
+  --font-ui-caps: 'Spectral SC', 'Spectral', Georgia, serif;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --gold-gradient: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-dark) 100%);
@@ -35,7 +37,7 @@ body {
   min-height: 100vh;
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 17px;
   background:
     radial-gradient(ellipse at center, rgba(18, 12, 7, 0.25) 0%, rgba(8, 5, 3, 0.85) 75%, #050302 100%),
     url('/coat-of-arms/background.jpg') center / cover fixed,
@@ -90,7 +92,7 @@ input {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(360px, 450px) auto;
+  grid-template-columns: minmax(380px, 490px) auto;
   justify-content: center;
   align-items: start;
   gap: 24px;
@@ -281,6 +283,16 @@ input {
     &:active {
       transform: translateY(1px);
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      filter: grayscale(0.85) brightness(0.7);
+      transform: none;
+
+      &::after {
+        display: none;
+      }
+    }
   }
 }
 
@@ -290,14 +302,13 @@ input {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 10px 0 6px;
-  font-family: var(--font-heading);
+  margin: 12px 0 8px;
+  font-family: var(--font-ui-caps);
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 19px;
+  letter-spacing: 0.1em;
   color: var(--gold-light);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
 
   &:first-child {
     margin-top: 0;
@@ -335,10 +346,10 @@ details {
     gap: 8px;
     padding: 6px 10px;
     list-style: none;
-    font-family: var(--font-heading);
+    font-family: var(--font-ui-caps);
     font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.05em;
+    font-size: 18px;
+    letter-spacing: 0.02em;
     color: var(--text);
     cursor: pointer;
     user-select: none;
@@ -375,11 +386,11 @@ details {
 
     .detail-option {
       display: inline-block;
-      margin: 4px 0 4px;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      margin: 6px 0 4px;
+      font-family: var(--font-ui-caps);
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.04em;
       color: var(--text-muted);
     }
 
@@ -404,10 +415,10 @@ details {
 // ---------------------------------------------------------------- Selectable tiles
 
 .selectable-shape {
-  width: 38px;
-  height: 38px;
+  width: 50px;
+  height: 50px;
   margin: 0 5px 5px 0;
-  padding: 4px;
+  padding: 3px;
   object-fit: contain;
   vertical-align: top;
   cursor: pointer;
@@ -465,7 +476,7 @@ details {
   margin: 4px 2px;
 
   .coa-option-name {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text);
   }
 
@@ -543,10 +554,10 @@ input[type='color'] {
   }
 
   .slider-title {
-    font-family: var(--font-heading);
-    font-size: 10.5px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-family: var(--font-ui-caps);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.02em;
     color: var(--text-muted);
     white-space: nowrap;
     overflow: hidden;
@@ -554,9 +565,9 @@ input[type='color'] {
   }
 
   .range-input {
-    width: 38px;
+    width: 42px;
     padding: 0 2px;
-    font-size: 15px;
+    font-size: 17px;
     text-align: center;
     color: var(--gold-light);
     background: transparent;
@@ -683,11 +694,11 @@ input[type='color'] {
 }
 
 .chip {
-  padding: 2px 10px;
-  font-family: var(--font-heading);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 2px 12px 3px;
+  font-family: var(--font-ui-caps);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.03em;
   color: var(--text-muted);
   background: rgba(10, 6, 3, 0.5);
   border: 1px solid rgba(201, 162, 74, 0.35);
@@ -722,7 +733,7 @@ input[type='color'] {
 .charge-empty {
   margin: 2px 4px 8px;
   font-style: italic;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -806,7 +817,7 @@ input[type='color'] {
     max-width: 110px;
     padding: 1px 4px;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text);
     background: rgba(10, 6, 3, 0.7);
     border: 1px solid var(--gold-dark);
@@ -832,6 +843,364 @@ input[type='color'] {
 @keyframes drop-settle {
   0% { transform: scale(1.04); box-shadow: 0 0 14px rgba(255, 210, 120, 0.6); }
   100% { transform: none; }
+}
+
+// ---------------------------------------------------------------- Language switch
+
+.lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--gold-dark);
+  border-radius: 999px;
+  background: rgba(18, 12, 7, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.lang-button {
+  padding: 3px 14px 4px;
+  font-family: var(--font-ui-caps);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+
+  &:hover {
+    color: var(--gold-light);
+  }
+
+  &.selected {
+    color: var(--ink);
+    background: var(--gold-gradient);
+  }
+}
+
+// ---------------------------------------------------------------- Notes & errors
+
+.coa-note {
+  margin: 4px 2px 8px;
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.coa-error {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 6px 0 4px;
+  padding: 8px 11px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #ffe2d8;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: linear-gradient(180deg, rgba(142, 31, 31, 0.55), rgba(90, 16, 16, 0.65));
+  border: 1px solid #e05a4a;
+  border-left-width: 4px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  animation: unfold 0.3s var(--ease-out);
+
+  &::before {
+    content: '⚠ ';
+    color: #ffb4a6;
+  }
+
+  ul {
+    margin: 6px 0 0;
+    padding-left: 20px;
+  }
+
+  li + li {
+    margin-top: 4px;
+  }
+}
+
+.coa-error-summary::before {
+  content: none;
+}
+
+.coa-summary {
+  width: 100%;
+  max-width: 520px;
+}
+
+.problem-slot:empty {
+  display: none;
+}
+
+// ---------------------------------------------------------------- Tooltip
+
+.coa-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 280px;
+  padding: 6px 10px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.35;
+  white-space: pre-line;
+  color: var(--ink);
+  background: linear-gradient(180deg, #fbf3dc, var(--parchment));
+  border: 1px solid var(--gold-dark);
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // Arrow
+  &::after {
+    content: '';
+    position: absolute;
+    left: var(--arrow-x, 50%);
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    background: var(--parchment);
+    border-right: 1px solid var(--gold-dark);
+    border-bottom: 1px solid var(--gold-dark);
+    transform: rotate(45deg);
+  }
+
+  &.below::after {
+    top: -6px;
+    bottom: auto;
+    transform: rotate(225deg);
+  }
+}
+
+// ---------------------------------------------------------------- Tincture button & picker
+
+.tincture-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 12px 3px 3px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  color: var(--text);
+  background: rgba(10, 6, 3, 0.55);
+  border: 1px solid var(--gold-dark);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--ink), 0 0 0 2px var(--gold);
+  }
+
+  &:hover {
+    border-color: var(--gold-light);
+    box-shadow: 0 0 10px rgba(255, 200, 100, 0.4);
+  }
+}
+
+.tincture-picker {
+  position: fixed;
+  z-index: 900;
+  width: 400px;
+  max-width: calc(100vw - 16px);
+  padding: 10px 12px 12px;
+  background:
+    linear-gradient(180deg, rgba(58, 39, 22, 0.98), rgba(28, 19, 11, 0.98)),
+    var(--leather);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8);
+  animation: unfold 0.2s var(--ease-out);
+
+  .picker-title {
+    margin-bottom: 6px;
+    font-family: var(--font-ui-caps);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+  }
+
+  .picker-group + .picker-group {
+    margin-top: 8px;
+  }
+
+  .picker-group-title {
+    margin-bottom: 4px;
+    font-family: var(--font-ui-caps);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  .picker-swatches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+}
+
+.picker-swatch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 3px 6px 3px 3px;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  color: var(--text);
+  text-align: left;
+  background: rgba(10, 6, 3, 0.5);
+  border: 1px solid rgba(201, 162, 74, 0.3);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  img {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--ink);
+  }
+
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    border-color: var(--gold-light);
+  }
+
+  &.selected {
+    border-color: var(--gold-light);
+    box-shadow: 0 0 0 1px var(--gold), 0 0 10px rgba(255, 200, 100, 0.5);
+  }
+
+  // Picking it swaps the two tinctures of the area: clickable, marked with ⇄
+  &.swap {
+    position: relative;
+
+    &::after {
+      content: '⇄';
+      margin-left: auto;
+      padding-left: 2px;
+      font-size: 13px;
+      color: var(--gold);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.38;
+    filter: grayscale(0.7);
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: rgba(201, 162, 74, 0.3);
+    }
+  }
+}
+
+// ---------------------------------------------------------------- Colour variant box
+
+.variant-box {
+  margin: 8px 0;
+  padding: 8px 10px 6px;
+  border: 1px solid rgba(201, 162, 74, 0.5);
+  border-radius: 5px;
+  background: rgba(201, 162, 74, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(10, 6, 3, 0.6);
+
+  .variant-box-title {
+    margin-bottom: 6px;
+    font-family: var(--font-ui-caps);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: var(--gold-light);
+  }
+
+  .chip-row {
+    margin-bottom: 6px;
+  }
+
+  .coa-option {
+    margin: 6px 0 2px;
+  }
+}
+
+// ---------------------------------------------------------------- Misc controls
+
+.shapes-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.line-styles {
+  margin-top: 4px;
+}
+
+.selectable-shape.disabled {
+  opacity: 0.35;
+  filter: grayscale(0.8);
+  cursor: not-allowed;
+
+  &:hover {
+    transform: none;
+  }
+}
+
+.icon-button {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 22px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: rgba(10, 6, 3, 0.6);
+  border: 1px solid var(--gold-dark);
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+
+  &.selected {
+    color: var(--ink);
+    background: var(--gold-gradient);
+  }
+}
+
+details summary em {
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  color: var(--gold-light);
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 // ---------------------------------------------------------------- Responsive & accessibility

@@ -2,7 +2,8 @@
  * Photoshop-style free transform for a single placed object:
  *  - drag inside the box → move
  *  - drag a corner dot → uniform scale (around the center)
- *  - drag outside the box (but where rotation is allowed) → rotate around the center, Shift snaps to 15°
+ *  - drag outside the box (but where rotation is allowed) → rotate around the center, in 45° steps
+ *    (heraldry only knows describable positions: upright, bendwise, fesswise, reversed…)
  * Pure geometry + drawing; the caller owns pointer events and state.
  */
 
@@ -29,8 +30,7 @@ export interface DragState {
 
 const HANDLE_RADIUS = 4.5;
 const HANDLE_HIT_RADIUS = 9;
-const MIN_SIZE = 8;
-const ROTATE_SNAP = Math.PI / 12; // 15°
+const ROTATE_SNAP = Math.PI / 4; // 45°
 const COLOR = '#1e90ff';
 
 function toLocal(p: Placement, px: number, py: number): [number, number] {
@@ -64,7 +64,7 @@ export function hitTest(p: Placement, px: number, py: number, canRotate: boolean
   return null;
 }
 
-export function applyDrag(drag: DragState, px: number, py: number, snap: boolean): Placement {
+export function applyDrag(drag: DragState, px: number, py: number, minScale: number): Placement {
   const s = drag.start;
   switch (drag.hit.type) {
     case 'move':
@@ -73,15 +73,13 @@ export function applyDrag(drag: DragState, px: number, py: number, snap: boolean
     case 'scale': {
       const startDist = Math.hypot(drag.startX - s.x, drag.startY - s.y) || 1;
       const dist = Math.hypot(px - s.x, py - s.y);
-      const minScale = MIN_SIZE / Math.min(s.width, s.height);
       return { ...s, scale: Math.max(minScale, (s.scale * dist) / startDist) };
     }
 
     case 'rotate': {
       const a0 = Math.atan2(drag.startY - s.y, drag.startX - s.x);
       const a1 = Math.atan2(py - s.y, px - s.x);
-      let rotation = s.rotation + a1 - a0;
-      if (snap) rotation = Math.round(rotation / ROTATE_SNAP) * ROTATE_SNAP;
+      const rotation = Math.round((s.rotation + a1 - a0) / ROTATE_SNAP) * ROTATE_SNAP;
       return { ...s, rotation };
     }
   }

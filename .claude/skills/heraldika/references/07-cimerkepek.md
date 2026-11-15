@@ -13,6 +13,10 @@ A címerkép bármi lehet, ami a mezőn ábrázolható; a magyar szakirodalom (B
 
 A **magyar heraldika jellegzetes ábrái**: oroszlán, sas, griff, **szablyát tartó páncélos (vagy vörös ruhás) kar**, **levágott török fej**, **hármashalom**, **kettős kereszt**, liliom, rózsa, hatágú csillag, félhold, nap, pelikán, daru, egyszarvú, szarvas.
 
+**Kettős kereszt – változatok** (szakszó mindig „kettős kereszt”; az alfajta zárójelben, nemzeti jelöléssel, ha egyedi):
+- *(magyar címerbeli)* – a mai állami címer formája (1990. évi XLIV. tv.): a szárak vége homorú ívvel kiszélesedik, a szár alja egyenes, mert a koronából nő ki. Nincs tüske.
+- *(IV. Béla-kori, magyar)* – IV. Béla későbbi pecsétjei (Takács Imre: Az Árpád-házi királyok pecsétjei): kissé kiszélesedő szárvégek, a szár alján hegyes tüske. IV. Bélától lett országcímer.
+
 ## Stílus – hogyan kell egy címerképet megrajzolni
 
 - **Stilizált, lapos**, egyértelmű sziluettű; a **jellegzetes részek túlhangsúlyozva** (karom, nyelv, sörény, csőr).
@@ -123,10 +127,18 @@ További megnevezett elrendezések: **pólyaszerűen** (egy sorban vízszintesen
 - A címerképként használt korona alapesetben **nyitott** (abroncs + levelek/gyöngyök) és **arany**.
 - A címerképként használt korona nem rangjelző.
 
-## Az alkalmazásban (`chargeData`, `ChargeLayer`)
+## Az alkalmazásban (`coat-database.ts` → `chargeData`, `ChargeLayer`)
 
-- `rotation`: alapesetben **0**; tetszőleges szögben forgatott ábra csak akkor szabályos, ha a leírható (pl. harántosan = ±45° a harántpólya irányában, fordított = 180°).
-- `scale`: azonos ábrák csoportja azonos méretű legyen.
-- `area`: ha az ábra egy mezőhöz tartozik (`number`), a színszabály azzal a mezővel; ha `'all'`, és több eltérő mázú mezőn is átnyúlik, akkor mentes.
-- **Vízszintes tükrözés** szükséges a *balra fordított* irányhoz — érdemes külön kapcsolót adni, ne forgatással oldja meg a felhasználó (a forgatás fejjel lefelé fordítaná).
-- Mai ábrák: `double-cross` (**kettős kereszt** — Árpád-házi), `crown` (**nyitott korona**), `triple-mount` (**hármashalom** — a pajzstalphoz kell illeszkednie, alul a pajzs széléig érjen).
+- A címerképek **rögzített mázúak** (`tincture`), a választó tiltja (és tooltipben indokolja) azokat, amelyek a célmezőn sértenék a színszabályt.
+- `exempt: true` – a színszabály alól mentes (jelenleg a **zöld hármashalom**: a hegy/halom zöldben elnézett kivétel – ég és föld). Csak indokolt, forrással alátámasztható esetben használd!
+- `anchor`:
+  - `free` (lebegő): teljes egészében a pajzson és a saját mezőjén belül (2% tűrés);
+  - `base` (talpból kiinduló): le kell érnie a pajzs aljáig; alul/oldalt kilóghat, felül nem. Hozzáadáskor automatikusan a talpra kerül.
+- Forgatás 45°-os lépésekben; tükrözés: vízszintes = **balra fordult** (contourné), függőleges = **fordított** (renversé).
+- Minimális méret: a pajzs nagyobbik oldalának 12%-a.
+- Átfedés két címerkép között (a felső ábra hányada a alsón = *onLower*, az alsó eltakart hányada = *hidden*):
+  - *onLower* ≥ 90% → **rajta fekszik**: a színszabály a két címerkép között érvényes;
+  - *hidden* > 50% → hiba (eltakarja);
+  - *onLower* > 20% **és** *hidden* > 20% → hiba (zavaros átfedés);
+  - egyébként érintkezés / kinövés – szabályos (pl. koronából kinövő kettős kereszt, halmon álló korona).
+

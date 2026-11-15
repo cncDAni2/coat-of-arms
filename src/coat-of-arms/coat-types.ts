@@ -1,48 +1,28 @@
+import { AreaFill } from './field';
+import { DivisionId, LineStyle } from './geometry';
+import { Tincture } from './tinctures';
+
 export interface BaseInfo {
-  id: number | string,
-  offsetX?: number,
-  offsetY: number,
+  id: number,
+  offsetY: number, // vertical position of the division center (shape-dependent optical correction)
   perBendDegOffset?: number
 }
-export interface patternOptions {
-  url: string,
-  padding?: number,
-  scale?: number,
-  bgColor?: string,
-  shapeColors?: string[],
-  multipleColors?: number[][]
-}
-export interface DividentImagesInfo {
-  id: string, // Image file name (+png) and resourceKey
-  divided: number, // How many part will be there which is configurable
-  x: boolean, // Is custom X offset possible?
-  y: boolean, // Is custom Y offset possible?
-  i?: number // Index of the shape
-}
-export interface PatternData {
-  preview: string,
-  url: string,
-  name: string,
-  baseScale: number,
-  basePadding: number,
-  shapeColors: string[],
-  multipleColors?: number[][],
-  i?: number
-}
+
+/**
+ * How a charge relates to the edge of the shield:
+ *  - free: floats in the field, must lie entirely inside the shield and its area
+ *  - base: issues from the base (e.g. a mount), must touch the bottom edge, may run off at the bottom/sides
+ */
+export type ChargeAnchor = 'free' | 'base';
+
 export interface ChargeData {
+  id: string, // also the i18n key suffix: charge.<id>
   url: string,
-  name: string
-}
-export interface SelectedPattern {
-  url: string,
-  bgColor: string,
-  padding: number,
-  scale: number,
-  offsetX: number,
-  offsetY: number,
-  shapeColors: string[],
-  multipleColors?: number[][],
-  i?: number
+  /** The fixed tincture the charge is drawn in */
+  tincture: Tincture,
+  /** Tolerated exception to the rule of tincture (e.g. a mount of vert) */
+  exempt?: boolean,
+  anchor: ChargeAnchor
 }
 
 /** Which field area a charge lives in (and is clipped to): an area index, or the whole shield. */
@@ -54,27 +34,25 @@ export interface ChargeLayer {
   charge: ChargeData,
   area: ChargeArea,
   x: number, // center
-  y: number, // center
+  y: number,
   width: number, // unscaled size
   height: number,
   scale: number,
-  rotation: number // radians
+  rotation: number, // radians, multiples of 45°
+  flipX: boolean, // contourné
+  flipY: boolean // reversed
 }
 
 export interface CoaState {
   backgroundColor: string,
-  selectedBase: {
-    shape: BaseInfo,
-    background: string,
-    stroke: string,
-    offsetX: number,
-    offsetY: number
+  base: BaseInfo,
+  division: {
+    id: DivisionId,
+    line: LineStyle,
+    offsetX: number, // fraction of the shield width
+    offsetY: number // fraction of the shield height
   },
-  selectedDiv: {
-    shape: DividentImagesInfo,
-    colors: string[],
-    pattern: (SelectedPattern | null)[]
-  },
+  areas: AreaFill[],
   /** Bottom → top render order */
   charges: ChargeLayer[],
   selectedChargeId: number | null,
